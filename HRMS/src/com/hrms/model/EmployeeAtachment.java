@@ -25,8 +25,17 @@ public class EmployeeAtachment {
     private String confirmation;
     @Column(name="type_id")
     private long typeid;
-    @Column(name="Type")
+    
+    public byte[] getFile() {
+		return file;
+	}
+	public void setFile(byte[] file) {
+		this.file = file;
+	}
+	@Column(name="Type")
     private String type;
+    @Column(name="file" , nullable=false, columnDefinition="mediumblob")
+    private byte[] file;
 	public long getId() {
 		return id;
 	}
