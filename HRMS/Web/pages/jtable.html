@@ -1,0 +1,115 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>AJAX crud</title>
+<!-- Include one of jTable styles. -->
+<link href="js/jtable/css/metro/crimson/jtable.css" rel="stylesheet" type="text/css" />
+<link href="js/jtable/css/jquery-ui-1.10.3.custom.css" rel="stylesheet" type="text/css" />
+<!-- Include jTable script file. -->
+<script src="js/jtable/jquery-1.8.2.js" type="text/javascript"></script>
+<script src="js/jtable/jquery-ui-1.10.3.custom.js" type="text/javascript"></script>
+<script src="js/jtable/jquery.jtable.js" type="text/javascript"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#departments').jtable({     	
+            title: 'Table of Departments',
+            paging: true,
+            pageSize: 10,
+            sorting: true,
+            multiSorting: true,
+            defaultSorting: 'Name ASC',
+            ajaxSettings:
+            {
+              dataType:'text',
+              beforeSend:function(xhr, options)
+              {
+                if (options.url.match(/^(GET|POST|PUT|DELETE)>(.*)$/i))
+                {
+                  options.type = RegExp.$1;
+                  options.url  = RegExp.$2;
+                }
+
+                if (options.data)
+                {
+                  var data = unescapeQueryString(options.data);
+
+                  if (data.id) options.url += data.id;
+
+                  options.data = JSON.stringify(data);
+                }
+
+                var callback = options.success;
+
+                options.success = function(input)
+                {
+                  var output = { Result:input.status_code == 200 ? 'OK' : 'ERROR' }
+
+                  output[input.data instanceof Array ? 'Records' : 'Record'] = input.data;
+
+                  if (callback) callback(output);
+                }
+              }
+            },
+            actions: {
+                listAction: 'GET>/HRMS/hr/departments/list/',
+                createAction:'POST>/HRMS/hr/departments/addDepartment',
+                updateAction: 'PUT>/CRUDController?action=update',
+                deleteAction: 'DELETE>/CRUDController?action=delete'
+            },
+            fields: {
+                userid: {
+                	title:'departmentId',
+                    key: true,
+                    list: true,
+                    create:true
+                },
+                firstName: {
+                    title: 'departmentName',
+                    width: '30%',
+                    edit:false
+                },
+                lastName: {
+                    title: 'departmentBuilding',
+                    width: '30%',
+                    edit:true
+                },
+                email: {
+                    title: 'departmentLocation',
+                    width: '20%',
+                    edit: true
+                }                
+            }
+        });
+        function unescapeQueryString(s)
+        {
+          var i, obj = {};
+
+          if (s.length)
+          {
+            var pairs = s.replace(/[+]/g, '%20').split('&');
+
+            for (i = 0; i < pairs.length; i++)
+            {
+              var pair = pairs[i].split('=');
+
+              if (pair[0])
+              {
+                obj[decodeURIComponent(pair[0])] = decodeURIComponent(pair[1]);
+              }
+            }
+          }
+
+          return obj;
+        }
+        $('#departments').jtable('load');
+    });
+</script>
+</head>
+<body>
+<div style="width:80%;margin-right:20%;margin-left:10%;text-align:center;">
+<h2 align="center">See data below</h2>
+<div id="departments"></div>
+</div>
+</body>
+</html>

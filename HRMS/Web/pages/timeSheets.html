@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+<script src="resources/knockout-3.1.0.js"></script>
+<script src="resources/jquery.js"></script>
+<script type="text/javascript">
+$(document).ready(function() {
+	
+			function sheet(data) {
+  				   var self = this;
+  				 	this.day = ko.observable(data.day);
+   				    this.timeIn = ko.observable(data.timeIn);
+					this.timeOut = ko.observable(data.timeOut);
+		}
+	function viewModel(){
+		var self=this;
+		self.timeList = ko.observableArray([]);
+		  
+		$.getJSON('get time sheet by empNumber', function(allData) {
+    			console.log(allData);
+    			
+                var mappedData= $.map(allData, function(data) { return new sheet(data) });
+                
+                self.timeList(mappedData);
+                console.log(self.timeList());
+            });
+    	}
+
+    		ko.applyBindings(new timeList());
+    	});
+   
+    
+</script>
+
+</head>
+<body>
+<div class="page-header">
+	<h1>Timesheet</h1>
+</div>
+		<hr>
+	<div class="container">
+		<div class="hero-unit">
+
+			<table align="center">
+			<tr><td>Employee Number:</td><td><input type="text" id="empNumber" placeholder="empNumber"></td><td><input type="button" id="btnSearch" value="view Timesheet"></td></tr>
+				<tr>
+					<th>Day</th>
+					<th>Time-In</th>
+					<th>Time-Out</th>
+					
+				</tr>
+				<tbody data-bind="foreach: timeList">
+					<tr>
+						<td data-bind='text: day' ></td>
+						<td data-bind='text: timeIn' ></td>
+						<td data-bind='text: timeOut' ></td>
+	
+					</tr>
+				</tbody>
+				<tfoot><tr><td align=center><input type="submit" value="Refresh"/></td><td></td><td><td align="center"><input type="submit" value="Done"/></td></tr></tfoot>
+			</table>
+		</div>
+
+	</div>
+   >
+
+
+</body>
+</html>

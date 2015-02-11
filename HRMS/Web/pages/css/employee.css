@@ -1,0 +1,12 @@
+@CHARSET "ISO-8859-1";
+
+media="screen"
+.ui-icon {
+padding: 0;
+display: none;
+cursor: pointer;
+-webkit-border-radius: 2px;
+-moz-border-radius: 2px;
+-o-border-radius: 2px;
+border-radius: 2px;
+}

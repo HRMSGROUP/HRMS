@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Timesheet</title>
+
+<script type="text/javascript" src="resources/bootstrap/js/jquery.js"></script>
+<script type="text/javascript" src="resources/bootstrap/js/knockout.js"></script>
+<script type="text/javascript" src="resources/bootstrap/js/sammy.min.js"></script>
+<script type="text/javascript" src="resources/bootstrap/js/bootstrap.min.js"></script>
+<link rel="stylesheet" type="text/css" 	href="resources/bootstrap/css/bootstrap.min.css"  />
+
+<script type="text/javascript" src="resources/bootstrap/js/moment.js"></script>
+<script type="text/javascript" src="resources/bootstrap/js/bootstrap-datetimepicker.min.js"></script>
+
+<link rel="stylesheet" type="text/css" 	href="resources/bootstrap/css/bootstrap-responsive.min.css"  />
+<link rel="stylesheet" type="text/css" 	href="resources/bootstrap/css/main.css"  />
+
+<link rel="stylesheet" type="text/css" 	href="resources/bootstrap/css/bootstrap-datetimepicker.min.css"  />
+
+</head>
+<body>
+<div class="page-header">
+	<h1>TimeSheet</h1>
+</div>
+<div id="centerContainer">
+	<div class="container-fluid">
+		<div class="row">
+		<div class="col-sm-6 col-md-9">
+			<div class="block-left">			
+				<form id="timeTable" class="form" role="form">
+					<div class='input-group date' id='datetimepickerDefault'>
+                    	<input type='text' class="form-control" />
+                    		<span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span>
+                    		</span>
+                	</div>
+					<table class="table table-striped">
+						<caption>Insert Times Below:</caption>
+							<thead>
+								<tr>
+									<th>Day</th>
+									<th>Start Time</th>
+									<th>End Time</th>
+									<th>Hours Worked</th>
+								</tr>
+							</thead>
+							<tbody id="hoursBody">
+								<tr>
+								
+									<td><label>Monday</label></td>
+                                 	
+                                 	<td>
+                                 	
+                                 		<div class='input-group input-group-lg col-md-6 date' id='datetimepicker1'>                                  	
+                                 			<input class="form-control" type="text" placeholder="HH:MM">
+                                 	<span class="input-group-addon"><span class="glyphicon glyphicon-time"></span>
+                    				</span>
+                                 	</div>
+                                 	
+                                 	</td> 
+                                    <td>
+                                    
+                                    <div class='input-group input-group-lg col-md-6 date' id='datetimepicker11'> 
+                                 	         <input class="form-control" type="text" placeholder="HH:MM">
+                                 				<span class="input-group-addon">
+                                 						<span class="glyphicon glyphicon-time">
+                                 						</span>
+                    							</span>
+                                 		</div>
+                                 	
+                                 		
+                                 	</td>
+                                 	                                 	
+                                 	<td>
+                                 		                              
+                                 			<input class="form-control" type="text" >
+                                 			
+                                 	</td> 								
+								</tr>
+										<tr>
+								
+									<td><label >Tuesday</label></td>
+                                 	
+                                 	<td>
+                                 	
+                                 		<div class='input-group input-group-lg col-md-6 date' id='datetimepicker2'>                                  	
+                                 			<input class="form-control" type="text" placeholder="HH:MM">
+                                 	<span class="input-group-addon"><span class="glyphicon glyphicon-time"></span>
+                    				</span>
+                                 	</div>
+                                 	
+                                 	</td> 
+                                    <td>
+                                    
+                                    <div class='input-group input-group-lg col-md-6 date' id='datetimepicker22'> 
+                                 	         <input class="form-control" type="text" placeholder="HH:MM">
+                                 				<span class="input-group-addon">
+                                 						<span class="glyphicon glyphicon-time">
+                                 						</span>
+                    							</span>
+                                 		</div>
+                                 	
+                                 		
+                                 	</td>
+                                 	                                 	
+                                 	<td>
+                                 		                              
+                                 			<input class="form-control" type="text" placeholder="">
+                                 			
+                                 	</td> 								
+								</tr>
+									<tr>
+								
+									<td><label>Wednesday</label></td>
+                                 	
+                                 	<td>
+                                 	
+                                 		<div class='input-group input-group-lg col-md-6 date' id='datetimepicker3'>                                  	
+                                 			<input class="form-control" type="text" placeholder="HH:MM">
+                                 	<span class="input-group-addon"><span class="glyphicon glyphicon-time"></span>
+                    				</span>
+                                 	</div>
+                                 	
+                                 	</td> 
+                                    <td>
+                                    
+                                    <div class='input-group input-group-lg col-md-6 date' id='datetimepicker33'> 
+                                 	         <input class="form-control" type="text" placeholder="HH:MM">
+                                 				<span class="input-group-addon">
+                                 						<span class="glyphicon glyphicon-time">
+                                 						</span>
+                    							</span>
+                                 		</div>
+                                 	
+                                 		
+                                 	</td>
+                                 	                                 	
+                                 	<td>
+                                 		                              
+                                 			<input class="form-control" type="text" placeholder="">
+                                 			
+                                 	</td> 								
+								</tr>
+									<tr>
+								
+									<td><label >Thursday</label></td>
+                                 	
+                                 	<td>
+                                 	
+                                 		<div class='input-group input-group-lg col-md-6 date' id='datetimepicker4'>                                  	
+                                 			<input class="form-control" type="text" placeholder="HH:MM">
+                                 	<span class="input-group-addon"><span class="glyphicon glyphicon-time"></span>
+                    				</span>
+                                 	</div>
+                                 	
+                                 	</td> 
+                                    <td>
+                                    
+                                    <div class='input-group input-group-lg col-md-6 date' id='datetimepicker44'> 
+                                 	         <input class="form-control" type="text" placeholder="HH:MM">
+                                 				<span class="input-group-addon">
+                                 						<span class="glyphicon glyphicon-time">
+                                 						</span>
+                    							</span>
+                                 		</div>
+                                 	
+                                 		
+                                 	</td>
+                                 	                                 	
+                                 	<td>
+                                 		                              
+                                 			<input class="form-control" type="text" placeholder="">
+                                 			
+                                 	</td> 								
+								</tr>	
+									<tr>
+								
+									<td><label >Friday</label></td>
+                                 	
+                                 	<td>
+                                 	
+                                 		<div class='input-group input-group-lg col-md-6 date' id='datetimepicker5'>                                  	
+                                 			<input class="form-control" type="text" placeholder="HH:MM">
+                                 	<span class="input-group-addon"><span class="glyphicon glyphicon-time"></span>
+                    				</span>
+                                 	</div>
+                                 	
+                                 	</td> 
+                                    <td>
+                                    
+                                    <div class='input-group input-group-lg col-md-6 date' id='datetimepicker55'> 
+                                 	         <input class="form-control" type="text" placeholder="HH:MM">
+                                 				<span class="input-group-addon">
+                                 						<span class="glyphicon glyphicon-time">
+                                 						</span>
+                    							</span>
+                                 		</div>
+                                 	
+                                 		
+                                 	</td>
+                                 	                                 	
+                                 	<td>
+                                 		                              
+                                 			<input class="form-control" type="text" placeholder="">
+                                 			
+                                 	</td> 								
+								</tr>
+									<tr>
+										<td></td>
+										<td></td>
+										<td></td>
+										<td>
+											<button type="button" class="btn btn-success" >Update sheet</button>
+										</td>
+                           				
+									</tr>													
+							</tbody>
+					</table>					
+					
+				</form>
+			</div>
+		</div>
+	</div>
+</div>
+</div>
+
+<script src="hrsScripts/calendarTesting.js"></script>
+</body>
+</html>
