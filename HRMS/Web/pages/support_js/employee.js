@@ -1,9 +1,6 @@
 /**
  * 
  */
-/**
- * 
- */
 var table=null;
 $(document).ready(function(){
 	loadTable();
@@ -24,29 +21,28 @@ function loadTable()
 	        "aaData": jsonTbl,
 	        "sAjaxSource": "http://localhost:8080/HRMS/hr/EmployeeService/ViewEmployees",
 	        "bServerSide": true,
-/*	        "bSort": false,*/
+	        "bSort": false,
 	        "bVisible":false,
-	        "bProcessing": false,
+	        /*"bProcessing": false,*/
 	        "sPaginationType": "full_numbers",
 	        "aoColumns": [	                   	                      
-	                      {"sTitle": "First name", "mDataProp": "firstName" , "sWidth": "150px"},	                    
-	                      {"sTitle": "Last name", "mDataProp": "lastName" , "sWidth": "150px"},	
-	                      {"sTitle": "ID number", "mDataProp": "identityNumber" , "sWidth": "200px"},
-	                      {"sTitle": "Title", "mDataProp": "title" , "sWidth": "100px"},	              
+	                      {"sTitle": "First name", "mDataProp": "firstName" , "sWidth": "100px"},	                    
+	                      {"sTitle": "Last name", "mDataProp": "lastName" , "sWidth": "100px"},	
+	                      {"sTitle": "Title", "mDataProp": "title" , "sWidth": "80px"},	              
 	                      {"sTitle": "Email", "mDataProp": "email" , "sWidth": "100px"},	                     
-	                      {"sTitle": "Contact Number", "mDataProp": "contactNumber" , "sWidth": "100px"},
-	                      {"sTitle": "Institution", "mDataProp": "institution" , "sWidth": "100px"},   
-	                      {"sTitle": "Qualification", "mDataProp": "qualification" , "sWidth": "100px"},
-	                      {"sTitle": "Position", "mDataProp": "position" , "sWidth": "100px"},	                      
-	                      {"sTitle": "Employee type", "mDataProp": "empType" , "sWidth": "100px"},                   
-	                      {"sTitle": "Actions", "mDataProp": "empNumber", "sWidth": "150px" },
+	                      {"sTitle": "Contact Number", "mDataProp": "contactNumber" , "sWidth": "60px"},
+	                      {"sTitle": "Institution", "mDataProp": "institution" , "sWidth": "80px"},   
+	                      {"sTitle": "Qualification", "mDataProp": "qualification" , "sWidth": "50px"},
+	                      {"sTitle": "Position", "mDataProp": "position" , "sWidth": "50px"},	                      
+	                      {"sTitle": "Employee type", "mDataProp": "empType" , "sWidth": "0px"},                   
+	                      {"sTitle": "Actions", "mDataProp": "empNumber", "sWidth": "90px" },
 	                      
 	                  ],
 	                  "aoColumnDefs": [{ "bVisible": false, "aTargets": [] }],
 	                  "iDeferLoading": [jsonTbl.length, jsonTbl.length],
 	                  "fnRowCallback": function (nRow, aData, iDisplayIndex, iDisplayIndexFull) { 
 	                	  
-	       	           $('td:eq(10)', nRow).html('<input type="submit" value="View" onclick="doUpdate('+iDisplayIndex+');" class="mws-button green">&nbsp; <input type="button" class="mws-button red" value="Delete" onclick="doDelete('+aData["empNumber"]+');"/><br/>');
+	       	           $('td:eq(9)', nRow).html('<input type="submit" value="Details" onclick="doUpdate('+iDisplayIndex+');" class="mws-button green">&nbsp; <input type="button" class="mws-button red" value="Delete" onclick="doDelete('+aData["empNumber"]+');"/><br/>');
 	
 	                  }
 	       	});
@@ -142,6 +138,8 @@ function update(){
 	    		alert("Succesfully updated");
 	    		table.fnDestroy();
 	    		loadTable();
+	    		doCancel();
+	    		
 			}
 			else{
 				alert("Not updated");	  		
